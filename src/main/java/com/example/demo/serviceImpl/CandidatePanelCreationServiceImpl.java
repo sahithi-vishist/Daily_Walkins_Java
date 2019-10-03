@@ -39,4 +39,3 @@ public class CandidatePanelCreationServiceImpl implements CandidatePanelCreation
 	
 
 }
-

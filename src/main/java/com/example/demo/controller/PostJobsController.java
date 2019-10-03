@@ -45,6 +45,7 @@ public class PostJobsController {
 	List<PostJobsModel> res=postJobsService.getByKeySkills(postjobsModel.getKeySkills());
 	return ResponseEntity.ok().body(res);
 	}
+	
 	@PostMapping("/EmailCheck")
 	public ResponseEntity<List<PostJobsModel>> getJobNo(@RequestBody PostJobsModel postJobModel) {
 		List<PostJobsModel> res= postJobsService.getJobNo(postJobModel.getEmail());

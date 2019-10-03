@@ -195,8 +195,12 @@ public class PostJobsModel {
 	@Column(name="postedby")
 	private String postedBy ;
 	
-	@Column(name="walkintimeslots")
-	private String walkinTimeSlots ;
+	@OneToOne
+	@JoinColumn(name="walkintimeslots")
+	private TimeSlotsModel walkinTimeSlots ;
+	
+	@Column(name="venuedetails")
+	private String venueDetails;
 	
 	@Column(name="requirepanel")
 	private boolean requirePanel ;
@@ -214,7 +218,7 @@ public class PostJobsModel {
 	private String walkinLocation ;
 	
 	@Column(name="walkinlocality")
-	private String walkinLocality ;
+	private String clientLocality ;
 
 
 }

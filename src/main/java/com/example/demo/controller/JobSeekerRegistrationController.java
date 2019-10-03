@@ -83,6 +83,7 @@ public class JobSeekerRegistrationController {
    
    @PostMapping("/getWalkerByEmail")
    public ResponseEntity<JobSeekerRegistrationModel> getWalkerByEmail(@RequestBody JobSeekerRegistrationModel walker){
+	   
 	   JobSeekerRegistrationModel res=jobSeekerRegistrationService.findWalkerByEmail(walker.getEmail());
 		System.out.println(res);
 	   return ResponseEntity.ok().body(res);

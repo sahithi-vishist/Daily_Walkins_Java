@@ -20,11 +20,6 @@ public class PostJobsServiceImpl implements PostJobsService{
 	public PostJobsModel postjobs(PostJobsModel postJobsModel) {
 		return postJobsRepository.save(postJobsModel);
 	}
-	@Override
-	public List<PostJobsModel> getJobNo(String email) {
-		List<PostJobsModel> res=postJobsRepository.findByEmail(email);
-	 return res;
-	}
 
 
 	@Override
@@ -41,9 +36,13 @@ public class PostJobsServiceImpl implements PostJobsService{
 
 	@Override
 	public List<PostJobsModel> getByKeySkills(String skills) {
-		// TODO Auto-generated method stub
-		return postJobsRepository.findByKeySkills(skills);
+		List<PostJobsModel> res=postJobsRepository.findByKeySkills(skills);
+		return res;
 	}
-	
+	@Override
+	public List<PostJobsModel> getJobNo(String email) {
+		List<PostJobsModel> res=postJobsRepository.findByEmail(email);
+	 return res;
+	}
 
 }

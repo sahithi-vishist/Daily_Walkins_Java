@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +18,13 @@ import com.example.demo.service.FacilityRegistrationService;
 
 
 @RestController
+@CrossOrigin
 public class FacilityRegistrationController {
 	
 	@Autowired
 	FacilityRegistrationService facilityregistrationservice;
 	
-	@GetMapping("/getfaciltyregistration")
+	@GetMapping("/getallfacilties")
 	public ResponseEntity<List<FacilityRegistrationModel>> getfaciltyregistration() {
 		List <FacilityRegistrationModel> list=facilityregistrationservice.getfaciltyregistration();
 		return ResponseEntity.ok().body(list);

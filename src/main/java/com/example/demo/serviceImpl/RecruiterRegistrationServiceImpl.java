@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DAO.RecruiterRegistrationRepository;
+import com.example.demo.model.JobSeekerRegistrationModel;
 import com.example.demo.model.RecruiterRegistrationModel;
 import com.example.demo.service.RecruiterRegistrationService;
 
@@ -44,6 +45,22 @@ public class RecruiterRegistrationServiceImpl implements RecruiterRegistrationSe
 		
 		return recruiterRegistrationRepository.findById(recruiterId).get();
 	}
+//	@Override
+//	public int getrecruiter(String email) {
+//		System.out.println("email is"+email);
+//		RecruiterRegistrationModel res = recruiterRegistrationRepository.findByEmail(email);
+//		
+//		  if(res.getEmail().equals(email)) { return res.getRecruiterId(); }
+//		 
+//		return 0;
+//	}
+
+	@Override
+	public RecruiterRegistrationModel findRecruiterByEmail(String username) {
+		RecruiterRegistrationModel res=recruiterRegistrationRepository.findByEmail(username);
+		return res;
+	}
+
 
 	
 }

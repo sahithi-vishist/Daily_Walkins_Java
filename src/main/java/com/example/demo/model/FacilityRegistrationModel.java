@@ -12,7 +12,7 @@ public class FacilityRegistrationModel {
 	
 	@Id
 	@Column(name="FACILITYREGISTRATIONID")
-	private int facilityRegistrationIdId;
+	private int facilityRegistrationId;
 	
 	@Column(name = "FACILITY")
 	private String facility ;

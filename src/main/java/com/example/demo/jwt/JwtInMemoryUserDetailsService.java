@@ -12,13 +12,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.JobSeekerRegistrationModel;
+import com.example.demo.model.RecruiterRegistrationModel;
 import com.example.demo.service.JobSeekerRegistrationService;
+import com.example.demo.service.RecruiterRegistrationService;
 
 @Service
 public class JwtInMemoryUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	JobSeekerRegistrationService jobSeekerRegistrationService;
+	
 	static List<JwtUserDetails> inMemoryUserList = new ArrayList<>();
 
 	static {
@@ -32,7 +35,7 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
+		System.out.println("Walker called");
 		JobSeekerRegistrationModel walkerList = jobSeekerRegistrationService.findWalkerByEmail(username);
 		
 		List<JwtUserDetails> inMemoryUserList = new ArrayList<>();
@@ -46,5 +49,6 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 		
 		return findFirst.get();
 		}
-
+	
+	
 }

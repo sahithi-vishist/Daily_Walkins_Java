@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.jwt.JwtInMemoryRecruiterDetailsService;
 import com.example.demo.jwt.JwtTokenUtil;
 import com.example.demo.jwt.JwtUserDetails;
 
@@ -39,19 +40,41 @@ public class JwtAuthenticationRestController {
 
 	@Autowired
 	private UserDetailsService jwtInMemoryUserDetailsService;
+	
+	@Autowired
+	private UserDetailsService jwtInMemoryRecruiterDetailsService;
 
 	@RequestMapping(value = "${jwt.get.token.uri}", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
 			throws AuthenticationException {
-
+	
+		//if(authenticationRequest.getType()=="walker") 
+			
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
 		final UserDetails userDetails = jwtInMemoryUserDetailsService
 				.loadUserByUsername(authenticationRequest.getUsername());
 		
+		
 		final String token = jwtTokenUtil.generateToken(userDetails);
 		
+		
 		return ResponseEntity.ok(new JwtTokenResponse(token));
+		//		else if(authenticationRequest.getType()=="recruiter") {
+//			authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+//
+//			final UserDetails userDetails = jwtInMemoryRecruiterDetailsService
+//					.loadUserByUsername(authenticationRequest.getUsername());
+//			
+//			
+//			final String token = jwtTokenUtil.generateToken(userDetails);
+//			
+//			
+//			return ResponseEntity.ok(new JwtTokenResponse(token));
+//		}
+	
+	
+		
 	}
 
 	@RequestMapping(value = "${jwt.refresh.token.uri}", method = RequestMethod.GET)
