@@ -45,4 +45,11 @@ public class PostJobsServiceImpl implements PostJobsService{
 	 return res;
 	}
 
+
+	@Override
+	public PostJobsModel updateWalkin(PostJobsModel postJobsModel) {
+		
+		return postJobsRepository.save(postJobsModel);
+	}
+
 }

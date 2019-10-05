@@ -1,8 +1,12 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
@@ -12,13 +16,14 @@ public class FacilityRegistrationModel {
 	
 	@Id
 	@Column(name="FACILITYREGISTRATIONID")
-	private int facilityRegistrationIdId;
+	private int facilityRegistrationId;
 	
 	@Column(name = "FACILITY")
 	private String facility ;
 	
-	@Column(name = "FACILITYID")
-	private int facilityId;
+	@OneToOne
+	@JoinColumn(name = "FACILITYID")
+	private FacilityLoginModel facilityId;
 	
 	@Column(name = "LOCATION")
 	private String Location ;

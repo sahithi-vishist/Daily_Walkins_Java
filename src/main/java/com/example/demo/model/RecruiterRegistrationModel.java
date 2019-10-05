@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -65,26 +66,26 @@ public class RecruiterRegistrationModel {
     private String  companyProfile;
 	
 	@Column(name="activation")
-	private boolean activation;
+	private Boolean activation;
 	
 	@Column(name="regdate")
     private Date regDate; 
 	
 	@Column(name="emailverified")
-    private boolean emailVerified;
+    private Boolean emailVerified;
 	
 	@Column(name="isonline")
-    private boolean isOnline;
+    private Boolean isOnline;
 	
 	@Column(name="designation")
 	private String designation;
 	
-
+	@Lob
 	@Column(name="companylogo")
-	private String  companyLogo;
+	private byte[] companyLogo;
 	
 	@Column(name="visibility")
-	private boolean  visibility;
+	private Boolean  visibility;
 	
 	@Column(name="updatedate")
 	private Date updateDate; 
@@ -96,7 +97,7 @@ public class RecruiterRegistrationModel {
 	private String  logoString;
 	
 	@Column(name="ismobileonline")
-	private boolean  isMobileOnline;
+	private Boolean  isMobileOnline;
 	
 	@Column(name="lastlogin")
 	private Date  lastLogin;

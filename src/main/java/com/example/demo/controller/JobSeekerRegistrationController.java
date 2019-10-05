@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,11 +17,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.jwt.JwtTokenUtil;
 import com.example.demo.model.JobSeekerRegistrationModel;
-
+import com.example.demo.model.JobTypeModel;
+import com.example.demo.model.JsAppliedJobsModel;
 import com.example.demo.service.JobSeekerRegistrationService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @CrossOrigin
@@ -36,11 +45,26 @@ public class JobSeekerRegistrationController {
 //		walker=jobSeekerRegistrationService.registerWalker(walker);
 //		return ResponseEntity.ok().body(walker);
 //	}
+	@GetMapping("/totalwalkers")
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getAllWalkers()
+	{
+		
+		List<JobSeekerRegistrationModel> listOfWalkers=jobSeekerRegistrationService.getAllWalkers();
+		return ResponseEntity.ok().body(listOfWalkers);
+		
+	}
+	
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> save(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel)
+	public ResponseEntity<String> save(@Valid @RequestParam("regDetails") String regDetails,
+			@RequestParam("photo") MultipartFile photo,
+			@RequestParam("resume") MultipartFile resume) throws IOException
 	{
-		System.out.println(jobSeekerRegistrationModel.getResume());
+		System.out.println(regDetails);
+		JobSeekerRegistrationModel jobSeekerRegistrationModel=new JobSeekerRegistrationModel();
+		jobSeekerRegistrationModel = new ObjectMapper().readValue(regDetails, JobSeekerRegistrationModel.class);
+		jobSeekerRegistrationModel.setPhoto(photo.getBytes());
+		jobSeekerRegistrationModel.setResume(resume.getBytes());
 		jobSeekerRegistrationService.saveData(jobSeekerRegistrationModel);
 		
 		return ResponseEntity.ok().body("registration successfull");
@@ -90,5 +114,10 @@ public class JobSeekerRegistrationController {
 		
 		
 	}
-   
+   @PostMapping("/getWalkersByKeySkills")
+   public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerBySkills(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getByKeySkills(jobSeekerRegistrationModel.getKeySkills());
+		return ResponseEntity.ok().body(res);
+}
 }

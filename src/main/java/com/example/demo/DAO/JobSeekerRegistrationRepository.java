@@ -1,11 +1,14 @@
 package com.example.demo.DAO;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.model.JobSeekerRegistrationModel;
+
+
 
 public interface JobSeekerRegistrationRepository extends JpaRepository<JobSeekerRegistrationModel, Integer>{
 
@@ -16,6 +19,6 @@ public interface JobSeekerRegistrationRepository extends JpaRepository<JobSeeker
 	  //List<JobSeekerRegistrationModel> findByEmail();
 	
 	  public JobSeekerRegistrationModel findByEmail(String email);
-	
+	public List<JobSeekerRegistrationModel> findByKeySkills(String skills);
 	  
 }

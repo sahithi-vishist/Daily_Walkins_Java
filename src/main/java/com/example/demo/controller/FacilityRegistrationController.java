@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.FacilityLoginModel;
 import com.example.demo.model.FacilityRegistrationModel;
 import com.example.demo.service.FacilityRegistrationService;
 
@@ -50,11 +52,22 @@ public class FacilityRegistrationController {
 		
 		
 	}
+
 	@DeleteMapping("/deletefaciltyregistration")
 	public ResponseEntity<String> deletefaciltyregistration(@RequestParam(name="Id") Integer Id) {
 		facilityregistrationservice.deletefaciltyregistration(Id);
 		return ResponseEntity.ok().body("facilityregistrationModel deleted");
 	}
-
-
+	
+	@GetMapping("/getFacilitiesByDate")
+	public ResponseEntity<List<FacilityRegistrationModel>> getByFacilityDate(@RequestParam(name="date") String date) {
+		List<FacilityRegistrationModel> facilityregistrationModel = facilityregistrationservice.getByDate(date);
+		return ResponseEntity.ok().body(facilityregistrationModel);
+	}
+	
+	@PostMapping("/getByFacilityId")
+	public ResponseEntity<List<FacilityRegistrationModel>> getByFacilityId(@RequestBody FacilityLoginModel loginObj) {
+		List<FacilityRegistrationModel> facilityregistrationModel = facilityregistrationservice.getByFacilityId(loginObj);
+		return ResponseEntity.ok().body(facilityregistrationModel);
+	}
 }

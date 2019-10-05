@@ -31,9 +31,11 @@ public class FacilityLoginController {
 	
 	@PostMapping("/loginFacilityCheck")
 	
-	public ResponseEntity<Integer> getRecruiter(@RequestBody FacilityLoginModel facilityLoginModel) {
-		int res= facilityLoginService.getFacility(facilityLoginModel.getEmail(),facilityLoginModel.getPassword());
+	public ResponseEntity<FacilityLoginModel> getRecruiter(@RequestBody FacilityLoginModel facilityLoginModel) {
+		FacilityLoginModel res= facilityLoginService.getFacility(facilityLoginModel.getEmail(),facilityLoginModel.getPassword());
 		return ResponseEntity.ok().body(res);
 	}
+	
+	
 }
 	

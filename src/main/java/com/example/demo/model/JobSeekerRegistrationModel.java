@@ -91,11 +91,11 @@ public class JobSeekerRegistrationModel {
 	private String resumeHeadLine;
 	
 	@Column(name= "updatedon")
-	private Date updatedOn;
+	private String updatedOn;
 	
-	
+	@Lob
 	@Column(name= "resume")
-	private String resume;
+	private byte[] resume;
 	
 	@Column(name= "textresume")
 	private String textResume;
@@ -106,8 +106,9 @@ public class JobSeekerRegistrationModel {
 	@Column(name= "status")
 	private String status;
 	
+	@Lob
 	@Column(name= "photo")
-	private String photo;
+	private byte[] photo;
 	
 	@Column(name= "currentdesignation")
 	private String currentDesignation;
@@ -135,16 +136,16 @@ public class JobSeekerRegistrationModel {
 	private NoticePeriodListModel noticePeriod;
 	
 	@Column(name= "emailverified")
-	private boolean emailVerified;
+	private Boolean emailVerified;
 	
 	@Column(name= "visiblesettings")
-	private boolean visibleSettings;
+	private int visibleSettings;
 	
 	@Column(name= "jsid")
 	private String jsId;
 	
 	@Column(name= "isonline")
-	private boolean isOnline;
+	private Boolean isOnline;
 
 	@Column(name= "viewedcount")
 	private int viewedCount;
@@ -183,7 +184,7 @@ public class JobSeekerRegistrationModel {
 	private int relevantScore;
 	
 	@Column(name= "directregistration")
-	private boolean directRegistration;
+	private Boolean directRegistration;
 	
 	@Column(name= "profileaccessspecifier")
 	private String profileAccessSpecifier;
@@ -204,7 +205,7 @@ public class JobSeekerRegistrationModel {
 	private String profileName;
 	
 	@Column(name= "ismobileonline")
-	private boolean isMobileOnline;
+	private Boolean isMobileOnline;
 	
 	@Column(name= "dateofbirth")
 	private Date dateOfBirth;

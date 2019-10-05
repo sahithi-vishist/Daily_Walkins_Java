@@ -1,5 +1,7 @@
 package com.example.demo.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +77,22 @@ public class JobSeekerRegistrationServiceImpl implements JobSeekerRegistrationSe
 		
 		JobSeekerRegistrationModel res=jobSeekerRegistrationRepository.findByEmail(email);
 		return res;
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getAllWalkers() {
+	
+		return jobSeekerRegistrationRepository.findAll();
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getByKeySkills(String skills) {
+		
+		return jobSeekerRegistrationRepository.findByKeySkills(skills);
 	}
 
 	

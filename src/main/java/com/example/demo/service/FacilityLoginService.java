@@ -9,7 +9,7 @@ public interface FacilityLoginService {
 FacilityLoginModel saveFacility(FacilityLoginModel facilityLoginModel);
 	
 	List<FacilityLoginModel> getFacility();
-	  public int getFacility(String email,String password);
+	  public FacilityLoginModel getFacility(String email,String password);
     
 
 }
