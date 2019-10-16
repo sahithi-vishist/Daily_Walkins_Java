@@ -1,6 +1,9 @@
 package com.example.demo.controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,10 @@ public class CompanyNameController {
 	{
 		System.out.println(companyNameModel.toString());
 		return companyNameService.insertRec(companyNameModel);
+	}
+	@GetMapping("/getcompanies")
+	public List<CompanyNameModel> getCompanies(){
+		return this.companyNameService.getAllCompanies();
 	}
 	
 	

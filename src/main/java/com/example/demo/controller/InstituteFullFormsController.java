@@ -22,7 +22,7 @@ public class InstituteFullFormsController {
 	@Autowired
 	InstituteFullFormsService instituteFullFormsService;
 	
-	@GetMapping("/getinstitute")
+	@GetMapping("/getinstitutes")
 	public List<InstituteFullFormsModel> getInstituteFullFormsModels(){
 		return instituteFullFormsService.getinstitute();		
 	}

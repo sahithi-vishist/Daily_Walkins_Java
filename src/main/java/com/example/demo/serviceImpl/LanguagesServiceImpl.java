@@ -14,17 +14,17 @@ import com.example.demo.service.LanguagesService;
 public class LanguagesServiceImpl implements LanguagesService{
 	
 	@Autowired
-	LanguagesRepository languagesDAO;
+	LanguagesRepository languagesrepository;
 
 	@Override
 	public LanguagesModel saveUser(LanguagesModel languagesModel) {
 		
-		return languagesDAO.save(languagesModel);
+		return languagesrepository.save(languagesModel);
 	}
 
 	@Override
 	public List<LanguagesModel> getAll() {
-		return languagesDAO.findAll();
+		return languagesrepository.findAll();
 		
 	}
 

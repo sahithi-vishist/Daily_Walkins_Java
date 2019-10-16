@@ -10,5 +10,6 @@ public interface LocalitiesService {
 LocalitiesModel saveL(LocalitiesModel localitiesModel);
 	
 	List<LocalitiesModel> getL();
+	public List<LocalitiesModel> getLocalityByCity(String city);
 
 }

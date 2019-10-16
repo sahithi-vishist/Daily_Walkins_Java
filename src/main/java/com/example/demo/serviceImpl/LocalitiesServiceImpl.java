@@ -25,4 +25,9 @@ public class LocalitiesServiceImpl implements LocalitiesService {
 		return localitiesRepository.findAll();
 	}
 
+	@Override
+	public List<LocalitiesModel> getLocalityByCity(String city) {
+			return localitiesRepository.findByCity(city);
+	}
+
 }

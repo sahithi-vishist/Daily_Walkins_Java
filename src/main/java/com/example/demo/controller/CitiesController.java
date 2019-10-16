@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +26,11 @@ public CitiesModel Test(@RequestBody CitiesModel citiesModel)
 {
 	System.out.println(citiesModel.toString());
 	return citiesService.insertRec(citiesModel);
+}
+@GetMapping("/getcities")
+public List<CitiesModel> getAllCities(){
+	return citiesService.getAllCities();
+	
 }
 
 }

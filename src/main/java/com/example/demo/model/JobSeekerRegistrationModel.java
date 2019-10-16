@@ -67,7 +67,7 @@ public class JobSeekerRegistrationModel {
 	
 	@OneToOne
 	@JoinColumn(name= "location")
-	private LocationWithLatLongModel location;
+	private CitiesModel location;
 	
 	@Column(name= "locality")
 	private String locality;

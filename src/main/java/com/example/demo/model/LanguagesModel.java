@@ -14,10 +14,12 @@ import lombok.Data;
 public class LanguagesModel {
 	
 	@Id
-		@Column(name="langid")
-		private int lId;
+		@Column(name="languageid")
+		private int languageId;
 		
 		@Column(name="language")
-		private String languageName;
+		private String language;
+		@Column(name="langid")
+		private String langId;
 
 }

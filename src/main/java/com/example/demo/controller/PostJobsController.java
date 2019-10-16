@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.JobSeekerRegistrationModel;
+import com.example.demo.model.LocationWithLatLongModel;
 import com.example.demo.model.PostJobsModel;
 import com.example.demo.model.QualificationListModel;
 import com.example.demo.model.RecruiterRegistrationModel;
@@ -67,4 +68,51 @@ public class PostJobsController {
 		List<PostJobsModel> res= postJobsService.getJobNo(postJobModel.getEmail());
 		return ResponseEntity.ok().body(res);
 	}
+	@PostMapping("/searchByLocation")
+	public ResponseEntity<List<PostJobsModel>> getJobsLocation(@RequestBody PostJobsModel postjobsModel){
+		
+		List<PostJobsModel> res=postJobsService.getJobsByLocation(postjobsModel.getLocation());
+		return ResponseEntity.ok().body(res);
+		}
+	@PostMapping("/searchByIndustry")
+	public ResponseEntity<List<PostJobsModel>> getJobsIndustry(@RequestBody PostJobsModel postJobsModel){
+		
+		List<PostJobsModel> res=postJobsService.getJobsByIndustry(postJobsModel.getIndustryId());
+		return ResponseEntity.ok().body(res);
+		}
+	
+	@PostMapping("/searchByMinExp")
+	public ResponseEntity<List<PostJobsModel>> getJobsByMinExp(@RequestBody PostJobsModel postJobsModel){
+		
+		List<PostJobsModel> res=postJobsService.getJobsByminExp(postJobsModel.getExpMin());
+		return ResponseEntity.ok().body(res);
+		}
+	@PostMapping("/searchByMaxExp")
+	public ResponseEntity<List<PostJobsModel>> getJobsByMaxExp(@RequestBody PostJobsModel postJobsModel){
+		
+		List<PostJobsModel> res=postJobsService.getJobsBymaxExp(postJobsModel.getExpMax());
+		return ResponseEntity.ok().body(res);
+		}
+	
+	@PostMapping("/searchByRole")
+	public ResponseEntity<List<PostJobsModel>> getJobsByRole(@RequestBody PostJobsModel postJobsModel){
+		
+		List<PostJobsModel> res=postJobsService.getJobsByRole(postJobsModel.getRoleId());
+		return ResponseEntity.ok().body(res);
+		}
+	@PostMapping("/searchByJobType")
+	public ResponseEntity<List<PostJobsModel>> getJobsByJobType(@RequestBody PostJobsModel postJobsModel){
+		
+		List<PostJobsModel> res=postJobsService.getJobsByJobType(postJobsModel.getJobTypeId());
+		return ResponseEntity.ok().body(res);
+		}
+
+@PostMapping("/searchByQualification")
+public ResponseEntity<List<PostJobsModel>> getJobsByQualification(@RequestBody PostJobsModel postJobsModel){
+	
+	List<PostJobsModel> res=postJobsService.getJobsByEducation(postJobsModel.getQualification());
+	return ResponseEntity.ok().body(res);
+	}
+	
+	
 }

@@ -8,20 +8,20 @@ import javax.persistence.Table;
 import lombok.Data;
 
 
-@Entity(name="institutefullforms")
+@Entity(name="institute_fullforms")
 @Data
 public class InstituteFullFormsModel {
 	
 	@Id
-	@Column(name="instid")
-	private int InstId;
+	@Column(name="instituteid")
+	private int instituteId;
 	
 	@Column(name="institutename")
-	private String Institutename;
+	private String instituteName;
 	
 	
 	@Column(name="institutenamefullform")
-	private String InstituteFullForm;
+	private String instituteNameFullForm;
 
 
 	

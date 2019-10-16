@@ -1,5 +1,7 @@
 package com.example.demo.serviceImpl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +37,11 @@ public class CitiesServiceImpl implements CitiesService
 		CitiesModel res = null;
 		res =citiesRepository.findById(id).get();
 		return res;
+	}
+
+	@Override
+	public List<CitiesModel> getAllCities() {
+		
+		return citiesRepository.findAll();
 	}
 }

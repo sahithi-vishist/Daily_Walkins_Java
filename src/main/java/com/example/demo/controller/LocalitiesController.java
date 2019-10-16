@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.CitiesModel;
 import com.example.demo.model.LocalitiesModel;
 import com.example.demo.service.LocalitiesService;
 
@@ -30,4 +31,8 @@ public class LocalitiesController {
 		
 		return localitiesService.getL();
 }
+	@PostMapping("/getLocalities")
+	public List<LocalitiesModel> getByCityName(@RequestBody CitiesModel citiesModel){
+		return localitiesService.getLocalityByCity(citiesModel.getCityName());
+	}
 }

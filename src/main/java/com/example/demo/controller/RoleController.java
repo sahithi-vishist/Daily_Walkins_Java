@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.model.IndustriesModel;
 import com.example.demo.model.JobTypeModel;
 import com.example.demo.model.RoleModel;
 import com.example.demo.service.RoleService;
@@ -36,5 +37,9 @@ public class RoleController {
 		List<RoleModel> listOfRoles=roleService.getAll();
 		return ResponseEntity.ok().body(listOfRoles);
 	}
-	
+	@PostMapping("/getRolesByIndId")
+	public ResponseEntity<List<RoleModel>> getByIndustryId(@RequestBody RoleModel roleModel){
+		List<RoleModel> listOfRoles=roleService.getRolesByIndId(roleModel.getIndustryId());
+		return ResponseEntity.ok().body(listOfRoles);
+	}
 }

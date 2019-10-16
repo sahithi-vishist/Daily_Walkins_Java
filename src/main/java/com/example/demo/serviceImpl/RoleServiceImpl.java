@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.DAO.RoleRepository;
+import com.example.demo.model.IndustriesModel;
 import com.example.demo.model.JobSeekerRegistrationModel;
 import com.example.demo.model.RoleModel;
 import com.example.demo.service.RoleService;
@@ -29,6 +30,12 @@ public class RoleServiceImpl implements RoleService {
 	public List<RoleModel> getAll() {
 		
 		return roleRepository.findAll();
+	}
+
+	@Override
+	public List<RoleModel> getRolesByIndId(IndustriesModel indId) {
+	
+		return roleRepository.findByIndustryId(indId);
 	}
 
 

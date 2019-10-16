@@ -79,8 +79,16 @@ public class JobSeekerRegistrationController {
 		
 	}
 	@PutMapping("/updatewalker")
-	public ResponseEntity<JobSeekerRegistrationModel> update(@RequestBody JobSeekerRegistrationModel walker) {
-		walker=jobSeekerRegistrationService.updateWalker(walker);
+	public ResponseEntity<JobSeekerRegistrationModel> update(@Valid @RequestParam("updateDetails") String updateDetails,
+			@RequestParam("photo") MultipartFile photo,
+			@RequestParam("resume") MultipartFile resume) throws IOException
+	{
+		
+		JobSeekerRegistrationModel jobSeekerRegistrationModel=new JobSeekerRegistrationModel();
+		jobSeekerRegistrationModel = new ObjectMapper().readValue(updateDetails, JobSeekerRegistrationModel.class);
+		jobSeekerRegistrationModel.setPhoto(photo.getBytes());
+		jobSeekerRegistrationModel.setResume(resume.getBytes());
+		JobSeekerRegistrationModel walker=jobSeekerRegistrationService.updateWalker(jobSeekerRegistrationModel);
 		return ResponseEntity.ok().body(walker);
 	}
 	

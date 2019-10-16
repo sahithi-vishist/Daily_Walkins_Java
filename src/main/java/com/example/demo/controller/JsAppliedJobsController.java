@@ -39,6 +39,17 @@ public class JsAppliedJobsController {
 	public JsAppliedJobsModel getByIdjsa(Integer id) {
 	return jsAppliedJobsService.getById(id);
 }
+	@PostMapping("/checkappliedstatus")
+	public Boolean checkJobNoAndEmail(@RequestBody JsAppliedJobsModel jsAppliedJobsModel) {
 	
+		 boolean result=jsAppliedJobsService.getStatus(jsAppliedJobsModel.getJobNo(),jsAppliedJobsModel.getJobSeekerEmailId());
+		 if(result==true) {
+			 return true;
+		 }
+		 else {
+			 return false;
+		 }
+		
+	}
 	
 }
