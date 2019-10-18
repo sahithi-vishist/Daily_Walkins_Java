@@ -26,12 +26,13 @@ public class FacilityLoginServiceImpl implements FacilityLoginService {
 	}
 
 	@Override
-	public int getFacility(String email, String password) {
+	public FacilityLoginModel getFacility(String email, String password) {
 		FacilityLoginModel res=facilityLoginRepository.findByEmail(email);
 			if(res.getPassword().equals(password)) {
-				return res.getFacilityLoginId();
+				return res;
 			}
-			return 0;
+			return res;
+		
 	}
 
 	

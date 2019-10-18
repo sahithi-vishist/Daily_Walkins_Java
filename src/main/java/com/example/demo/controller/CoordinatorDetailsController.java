@@ -41,7 +41,7 @@ public class CoordinatorDetailsController {
 	}
 	
 	@GetMapping("/getByidCo")
-	public CoordinatorDetailsModel getByIdCo(@RequestParam Integer id) {
+	public CoordinatorDetailsModel getByIdCo(@RequestParam(name="id") Integer id) {
 		return coordinatorDetailsService.getByIdCo(id);
 	}
 	

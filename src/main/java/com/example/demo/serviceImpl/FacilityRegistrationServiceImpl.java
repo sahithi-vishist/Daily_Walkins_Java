@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DAO.FacilityRegistrationRepository;
+import com.example.demo.model.FacilityLoginModel;
 import com.example.demo.model.FacilityRegistrationModel;
 import com.example.demo.service.FacilityRegistrationService;
 
@@ -46,5 +47,19 @@ public class FacilityRegistrationServiceImpl implements FacilityRegistrationServ
 	public FacilityRegistrationModel getById(Integer id) {
 		return facilityRegistrationRepository.findById(id).get();
 	}
+
+	@Override
+	public List<FacilityRegistrationModel> getByDate(String date) {
+		
+		return facilityRegistrationRepository.findByAvailabilityDates(date);
+	}
+
+	@Override
+	public List<FacilityRegistrationModel> getByFacilityId(FacilityLoginModel loginObj) {
+		
+		return facilityRegistrationRepository.findByFacilityId(loginObj);
+	}
+
+	
 
 }

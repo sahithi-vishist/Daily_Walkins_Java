@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -128,8 +129,9 @@ public class CreateDriveModel {
 	@Column(name="companyaddress")
 	private String companyAddress;
 	
+	@Lob
 	@Column(name="companylogo")
-	private String companyLogo;
+	private byte[] companyLogo;
 	
 	@Column(name="walkinlocation")
 	private String walkinLocation;

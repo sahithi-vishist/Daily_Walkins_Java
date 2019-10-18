@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,11 +17,17 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.jwt.JwtTokenUtil;
 import com.example.demo.model.JobSeekerRegistrationModel;
-
+import com.example.demo.model.JobTypeModel;
+import com.example.demo.model.JsAppliedJobsModel;
+import com.example.demo.model.PostJobsModel;
 import com.example.demo.service.JobSeekerRegistrationService;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @CrossOrigin
@@ -36,11 +46,26 @@ public class JobSeekerRegistrationController {
 //		walker=jobSeekerRegistrationService.registerWalker(walker);
 //		return ResponseEntity.ok().body(walker);
 //	}
+	@GetMapping("/totalwalkers")
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getAllWalkers()
+	{
+		
+		List<JobSeekerRegistrationModel> listOfWalkers=jobSeekerRegistrationService.getAllWalkers();
+		return ResponseEntity.ok().body(listOfWalkers);
+		
+	}
+	
 	
 	@PostMapping("/register")
-	public ResponseEntity<String> save(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel)
+	public ResponseEntity<String> save(@Valid @RequestParam("regDetails") String regDetails,
+			@RequestParam("photo") MultipartFile photo,
+			@RequestParam("resume") MultipartFile resume) throws IOException
 	{
-		System.out.println(jobSeekerRegistrationModel.getResume());
+		System.out.println(regDetails);
+		JobSeekerRegistrationModel jobSeekerRegistrationModel=new JobSeekerRegistrationModel();
+		jobSeekerRegistrationModel = new ObjectMapper().readValue(regDetails, JobSeekerRegistrationModel.class);
+		jobSeekerRegistrationModel.setPhoto(photo.getBytes());
+		jobSeekerRegistrationModel.setResume(resume.getBytes());
 		jobSeekerRegistrationService.saveData(jobSeekerRegistrationModel);
 		
 		return ResponseEntity.ok().body("registration successfull");
@@ -90,5 +115,57 @@ public class JobSeekerRegistrationController {
 		
 		
 	}
+   @PostMapping("/getWalkersByKeySkills")
+   public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerBySkills(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getByKeySkills(jobSeekerRegistrationModel.getKeySkills());
+		return ResponseEntity.ok().body(res);
+}
+//   @PostMapping("/getWalkersByLocation")
+//   public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerByLocation(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+//		
+//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByLocation(jobSeekerRegistrationModel.getLocation());
+//		return ResponseEntity.ok().body(res);
+//}
    
+	@PostMapping("/searchWalkerByIndustry")
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByIndustry(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByIndustry(jobSeekerRegistrationModel.getIndustryId());
+		return ResponseEntity.ok().body(res);
+		}
+	
+//	@PostMapping("/searchwalkerByMinExp")
+//	public ResponseEntity<List<JobSeekerRegistrationModel>> getJobsByMinExp(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+//		
+//		List<PostJobsModel> res=jobSeekerRegistrationService.getwalkerByminExp(jobSeekerRegistrationModel.getExperience());
+//		return ResponseEntity.ok().body(res);
+//		}
+	@PostMapping("/searchByWalkerExperience")
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByExperience(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByExperience(jobSeekerRegistrationModel.getExperience());
+//		return ResponseEntity.ok().body(res);
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByExperience( jobSeekerRegistrationModel.getExperience());
+		return ResponseEntity.ok().body(res);
+		}
+	
+	@PostMapping("/searchWalkerRole")
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByRole(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByRole(jobSeekerRegistrationModel.getRoleId());
+		return ResponseEntity.ok().body(res);
+		}
+	@PostMapping("/searchWalkerNoticePeriod")
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByNoticePeriod(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByNoticePeriod(jobSeekerRegistrationModel.getNoticePeriod());
+		return ResponseEntity.ok().body(res);
+		}
+
+@PostMapping("/searchByWalkerQualification")
+public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByQualification(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+	
+	List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByEducation(jobSeekerRegistrationModel.getEducation());
+	return ResponseEntity.ok().body(res);
+	}
 }

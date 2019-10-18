@@ -13,44 +13,44 @@ import lombok.Data;
 public class BookedFacilitiesModel {
 	
 	@Id
-	@Column(name="ID")
-	private int Id; 
+	@Column(name="bookedfacilityid")
+	private int bookedFacilityId; 
 	
-	@Column(name = "COMPANYEMAIL")
+	@Column(name = "companyemail")
 	private String companyEmail;
 	
-	@Column(name = "COMPANYNAME")
+	@Column(name = "companyname")
 	private String companyName;
 	
-	@Column(name = "CONTACTNUMBER")
+	@Column(name = "contactnumber")
 	private String contactNumber;
 	
-	@Column(name = "BOOKEDDATE")
+	@Column(name = "bookeddate")
 	private Date bookedDate;
 	
-	@Column(name = "NUMBEROFSEATS")
-	private int numberofseats;
+	@Column(name = "numberofseats")
+	private int numberOfSeats;
 	
-	@Column(name = "NUMBEROFTPROOMS")
+	@Column(name = "numberoftprooms")
 	private int numberOfTprooms;
 	
-	@Column(name = "NUMBEROFMEETINGROOMS")
+	@Column(name = "numberofmeetingrooms")
 	private int numberOfMeetingRooms;
 	
-	@Column(name = "NUMBEROFCOORDINATORS")
+	@Column(name = "numberofcoordinators")
 	private int numberOfCoordinators; 
 	
-	@Column(name = "FACILITYREQUIREDDATE")
-	private Date faciltyRequiredDate;
+	@Column(name = "faciityrequireddate")
+	private Date faciityRequiredDate;
 	
-	@Column(name = "RESOURCESNEEDED")
+	@Column(name = "resourcesneeded")
 	private boolean resourcesNeeded;
 	
-	@Column(name = "JOBSKILLS")
+	@Column(name = "jobskills")
 	private String jobSkills; 
 	
-	@Column(name = "RESOURCESNEEDEDCOUNT")
-	private int resourcesneededcount;
+	@Column(name = "resourcesneededcount")
+	private int resourcesNeededCount;
 
 	
 }

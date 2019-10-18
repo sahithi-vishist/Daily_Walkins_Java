@@ -1,12 +1,21 @@
 package com.example.demo.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DAO.JobSeekerRegistrationRepository;
 import com.example.demo.jwt.JwtTokenUtil;
+import com.example.demo.model.ExperienceModel;
+import com.example.demo.model.IndustriesModel;
 import com.example.demo.model.JobSeekerRegistrationModel;
-
+import com.example.demo.model.JobTypeModel;
+import com.example.demo.model.NoticePeriodListModel;
+import com.example.demo.model.PostJobsModel;
+import com.example.demo.model.QualificationListModel;
+import com.example.demo.model.RoleModel;
 import com.example.demo.service.JobSeekerRegistrationService;
 
 import io.jsonwebtoken.Claims;
@@ -77,5 +86,103 @@ public class JobSeekerRegistrationServiceImpl implements JobSeekerRegistrationSe
 		return res;
 	}
 
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getAllWalkers() {
+	
+		return jobSeekerRegistrationRepository.findAll();
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getByKeySkills(String skills) {
+//		List<JobSeekerRegistrationModel> res=new ArrayList();
+//		List<JobSeekerRegistrationModel> result=jobSeekerRegistrationRepository.findByKeySkills(skills);
+		
+		return jobSeekerRegistrationRepository.findByKeySkills(skills);
+	}
+
+
+
+//	@Override
+//	public List<JobSeekerRegistrationModel> getwalkerByLocation(String location) {
+//		
+//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByLocation(location);
+//		return res;
+//	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByEducation(QualificationListModel education) {
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByEducation(education);
+		return res;
+	}
+
+
+
+//	@Override
+//	public List<JobSeekerRegistrationModel> getwalkerByminExp(ExperienceModel minExp) {
+//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByExpMin(minExp);
+//		return res;
+//	}
+//
+//
+//
+//	@Override
+//	public List<JobSeekerRegistrationModel> getwalkerBymaxExp(ExperienceModel maxExp) {
+//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByExpMax(maxExp);
+//		return res;
+//	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByIndustry(IndustriesModel industry) {
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByIndustryId(industry);
+		return res;
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByRole(RoleModel role) {
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByRoleId(role);
+		return res;
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByNoticePeriod(NoticePeriodListModel noticePeriod) {
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByNoticePeriod(noticePeriod);
+		return res;
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByExperience(String experience) {
+	
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByExperience(experience);
+		System.out.println("Response is"+res);
+		return res;
+//		return jobSeekerRegistrationRepository.findByExperience(experience);
+		
+	}
+
+
+
+
+
+
+
+	
+
+	
+
+	
 	
 }

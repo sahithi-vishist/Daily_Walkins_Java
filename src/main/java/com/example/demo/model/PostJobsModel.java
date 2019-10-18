@@ -18,8 +18,9 @@ public class PostJobsModel {
 	@Column(name="companyemailid")
 	private String companyEmailId ;
 	
+	@Lob
 	@Column(name="companylogo")
-	private String companyLogo ;
+	private byte[] companyLogo;
 	
 	@Column(name="jobreference")
 	private String jobReference ; 
