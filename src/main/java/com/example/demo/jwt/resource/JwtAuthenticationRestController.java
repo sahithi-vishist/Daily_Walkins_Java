@@ -48,7 +48,7 @@ public class JwtAuthenticationRestController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
 			throws AuthenticationException {
 	
-		//if(authenticationRequest.getType()=="walker") 
+		if(authenticationRequest.getRole()=="walker") {
 			
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -60,20 +60,19 @@ public class JwtAuthenticationRestController {
 		
 		
 		return ResponseEntity.ok(new JwtTokenResponse(token));
-		//		else if(authenticationRequest.getType()=="recruiter") {
-//			authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-//
-//			final UserDetails userDetails = jwtInMemoryRecruiterDetailsService
-//					.loadUserByUsername(authenticationRequest.getUsername());
-//			
-//			
-//			final String token = jwtTokenUtil.generateToken(userDetails);
-//			
-//			
-//			return ResponseEntity.ok(new JwtTokenResponse(token));
-//		}
-	
-	
+		}
+			else {
+				System.out.println("called recruiter");
+		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+
+			final UserDetails userDetails = jwtInMemoryRecruiterDetailsService
+					.loadUserByUsername(authenticationRequest.getUsername());
+		
+		
+			final String token = jwtTokenUtil.generateToken(userDetails);
+			
+			return ResponseEntity.ok(new JwtTokenResponse(token));
+			}
 		
 	}
 

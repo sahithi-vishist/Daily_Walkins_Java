@@ -26,4 +26,6 @@ public interface PostJobsService
 	public List<PostJobsModel> getJobsByIndustry(IndustriesModel industry);
 	public List<PostJobsModel> getJobsByRole(RoleModel role);
 	public List<PostJobsModel> getJobsByJobType(JobTypeModel jobType);
+//	public List<PostJobsModel> getJobsBySearch(String keySkills,String location,QualificationListModel education,ExperienceModel expMin,
+//			ExperienceModel expMax,IndustriesModel industryId,RoleModel roleId,JobTypeModel jobTypeId);
 }

@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +59,18 @@ public class PostJobsController {
 	}
 	
 	@PostMapping("/getjobsbykeyskills")
+	
 	public ResponseEntity<List<PostJobsModel>> getJobBySkills(@RequestBody PostJobsModel postjobsModel){
-	//res= postJobsService.getByKeySkills(postjobsModel.getKeySkills());
-	List<PostJobsModel> res=postJobsService.getByKeySkills(postjobsModel.getKeySkills());
+		List<PostJobsModel> res=new ArrayList();
+	
+		String result=postjobsModel.getKeySkills();
+		String[] skillList=result.split("\\,");
+	
+		for (String skill : skillList) {
+			
+			res.addAll(postJobsService.getByKeySkills(skill));
+		}
+	
 	return ResponseEntity.ok().body(res);
 	}
 	
@@ -114,5 +125,12 @@ public ResponseEntity<List<PostJobsModel>> getJobsByQualification(@RequestBody P
 	return ResponseEntity.ok().body(res);
 	}
 	
-	
+//	@PostMapping("/advancesearch")
+//	public List<PostJobsModel> getJobsBySearch(@RequestBody PostJobsModel postJobsModel){
+//		return postJobsService.getJobsBySearch(postJobsModel.getKeySkills(), postJobsModel.getLocation(),
+//				postJobsModel.getQualification(),postJobsModel.getExpMin(),postJobsModel.getExpMax(),
+//				postJobsModel.getIndustryId(),postJobsModel.getRoleId(),postJobsModel.getJobTypeId());
+//		
+//	
+//	}
 }

@@ -42,7 +42,7 @@ public class PostJobsServiceImpl implements PostJobsService{
 
 	@Override
 	public List<PostJobsModel> getByKeySkills(String skills) {
-		List<PostJobsModel> res=postJobsRepository.findByKeySkills(skills);
+		List<PostJobsModel> res=postJobsRepository.findByKeySkillsContains(skills);
 		return res;
 	}
 	@Override
@@ -108,6 +108,17 @@ public class PostJobsServiceImpl implements PostJobsService{
 		return res;
 	}
 
+
+//	@Override
+//	public List<PostJobsModel> getJobsBySearch(String keySkills, String location, QualificationListModel education,
+//			ExperienceModel expMin, ExperienceModel expMax, IndustriesModel industryId, RoleModel roleId,
+//			JobTypeModel jobTypeId) {
+//		
+//		return postJobsRepository.findBySearch(keySkills, location, education, expMin, expMax, industryId, roleId, jobTypeId);
+//	}
+
+
+	
 
 	
 }

@@ -36,13 +36,13 @@ public class PanelDetailsModel {
 	private boolean availableForTelephonic;
 	
 	@Column(name = "availabletimeslotsforfacetoface")
-	private String availbleTimeSlotsForFaceToFace;
+	private String availableTimeSlotsForFaceToFace;
 	
 	@Column(name = "availabletimeslotsfortelephonic")
-	private String availbleTimeSlotsForTelephonic; 
+	private String availableTimeSlotsForTelephonic; 
 	
 	@Column(name = "availabletimeslotsforskype")
-	private String availbleTimeSlotsForSkype; 
+	private String availableTimeSlotsForSkype; 
 	
 	@Column(name = "costperhourforf2f")
     private int	costPerHourForF2F; 

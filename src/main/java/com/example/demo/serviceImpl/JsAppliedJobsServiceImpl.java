@@ -15,6 +15,8 @@ public class JsAppliedJobsServiceImpl implements JsAppliedJobsService {
 	
 @Autowired
 JsAppliedJobsRepository jsAppliedJobsRepository;
+private int gotJobNo;
+private String gotEmail;
 
 	@Override
 	public JsAppliedJobsModel postjobs(JsAppliedJobsModel jsAppliedJobsModel) {
@@ -22,8 +24,9 @@ JsAppliedJobsRepository jsAppliedJobsRepository;
 	}
 
 	@Override
-	public List<JsAppliedJobsModel> getjobs() {
-		return jsAppliedJobsRepository.findAll();
+	public List<JsAppliedJobsModel> getjobs(String wEmail) {
+		
+		return jsAppliedJobsRepository.findByJobSeekerEmailId(wEmail);
 	}
 
 	@Override
@@ -39,29 +42,34 @@ JsAppliedJobsRepository jsAppliedJobsRepository;
 	@Override
 	public Boolean getStatus(PostJobsModel jobNo, String email) {
 		
-		JsAppliedJobsModel emailExists=jsAppliedJobsRepository.findByJobSeekerEmailId(email);
-		System.out.println(emailExists);
-	
-		JsAppliedJobsModel jobNoExists=jsAppliedJobsRepository.findByJobNo(jobNo);
-		System.out.println(jobNoExists);
+		List<JsAppliedJobsModel> emailExists=jsAppliedJobsRepository.findByJobSeekerEmailId(email);
 		
-				
+	
+		List<JsAppliedJobsModel> jobNoExists=jsAppliedJobsRepository.findByJobNo(jobNo);
+		
+		
+		for (JsAppliedJobsModel jsAppliedJobsModel1 : jobNoExists) {
+			gotJobNo=jsAppliedJobsModel1.getJobNo().getJobNo();
+		}
+		for (JsAppliedJobsModel jsAppliedJobsModel2 : emailExists ) {
+			gotEmail=jsAppliedJobsModel2.getJobSeekerEmailId();
+		}
+		System.out.println(gotJobNo);
+		System.out.println(gotEmail);
 				if(jobNoExists==null || emailExists==null){
 					
 					return false;
 				}
 				else {
+								
+							if(gotJobNo==jobNo.getJobNo()&& gotEmail.equals(email)){
+								return true;
+							}
+							else {
+								return false;
+							}		
 					
-					
-					if(jobNoExists.getJobNo().getJobNo()==jobNo.getJobNo()&&emailExists.getJobSeekerEmailId().equals(email)){
-						return true;
-					}
-					else {
-						return false;
-					}
 				}
-				
-				
 		
 	}
 

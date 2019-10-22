@@ -92,7 +92,7 @@ public class JobSeekerRegistrationServiceImpl implements JobSeekerRegistrationSe
 	@Override
 	public List<JobSeekerRegistrationModel> getByKeySkills(String skills) {
 		
-		return jobSeekerRegistrationRepository.findByKeySkills(skills);
+		return jobSeekerRegistrationRepository.findByKeySkillsContains(skills);
 	}
 
 	

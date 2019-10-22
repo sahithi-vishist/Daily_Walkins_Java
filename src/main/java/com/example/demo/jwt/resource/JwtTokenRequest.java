@@ -8,15 +8,17 @@ public class JwtTokenRequest implements Serializable {
 
 	private String username;
 	private String password;
-	//private String type;
+	private String role;
 
-//	public String getType() {
-//		return type;
-//	}
-//
-//	public void setType(String type) {
-//		this.type = type;
-//	}
+	
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	public JwtTokenRequest() {
 		super();

@@ -1,5 +1,7 @@
 package com.example.demo.DAO;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.model.JobSeekerRegistrationModel;
@@ -8,6 +10,7 @@ import com.example.demo.model.PostJobsModel;
 
 public interface JsAppliedJobsRepository extends JpaRepository<JsAppliedJobsModel, Integer> {
 
-	public JsAppliedJobsModel findByJobSeekerEmailId(String email);
-	public JsAppliedJobsModel findByJobNo(PostJobsModel jobNo);
+	public List<JsAppliedJobsModel> findByJobSeekerEmailId(String email);
+	public List<JsAppliedJobsModel> findByJobNo(PostJobsModel jobNo);
+	
 }

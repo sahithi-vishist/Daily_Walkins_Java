@@ -72,17 +72,7 @@ public class RecruiterRegistrationController {
 		RecruiterRegistrationModel recruiterRegistrationModel = recruiterRegistrationService.getById(recruiterId);
 		return ResponseEntity.ok().body(recruiterRegistrationModel);
 	}
-//	@GetMapping("/getRecruiterId")
-//	   
-//	   public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
-//			String authToken = request.getHeader(tokenHeader);
-//			
-//			final String token = authToken.substring(7);
-//			String username = jwtTokenUtil.getUsernameFromToken(token);
-//			int res=recruiterRegistrationService.getrecruiter(username);
-//			return ResponseEntity.ok().body(res);
-//				
-//		}
+	
 	@PostMapping("/getRecruiterByEmail")
 	   public ResponseEntity<RecruiterRegistrationModel> getRecruiterByEmail(@RequestBody RecruiterRegistrationModel recruiter){
 		   RecruiterRegistrationModel res=recruiterRegistrationService.findRecruiterByEmail(recruiter.getEmail());

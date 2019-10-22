@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.JsAppliedJobsModel;
@@ -32,8 +33,8 @@ public class JsAppliedJobsController {
 }
 	
 	@GetMapping("/getAppliedJobs")
-	public List<JsAppliedJobsModel> getjsa() {
-	return jsAppliedJobsService.getjobs();
+	public List<JsAppliedJobsModel> getjsa(@RequestParam (name="walkerEmail") String walkerEmail) {
+	return jsAppliedJobsService.getjobs(walkerEmail);
 }
 	@GetMapping("/getbyidjsa")
 	public JsAppliedJobsModel getByIdjsa(Integer id) {

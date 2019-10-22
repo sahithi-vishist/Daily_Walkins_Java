@@ -11,14 +11,13 @@ import com.example.demo.model.JobSeekerRegistrationModel;
 
 
 public interface JobSeekerRegistrationRepository extends JpaRepository<JobSeekerRegistrationModel, Integer>{
-
-	  
-	  
+ 
 	  //@Query("SELECT j FROM JobSeekerRegistrationModel j WHERE j.email = 'abc@gmail.com'")
 	 
 	  //List<JobSeekerRegistrationModel> findByEmail();
 	
 	  public JobSeekerRegistrationModel findByEmail(String email);
-	public List<JobSeekerRegistrationModel> findByKeySkills(String skills);
+	
+	public List<JobSeekerRegistrationModel> findByKeySkillsContains(String skills);
 	  
 }

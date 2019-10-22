@@ -35,12 +35,12 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("Walker called");
+	System.out.println(username);
 		JobSeekerRegistrationModel walkerList = jobSeekerRegistrationService.findWalkerByEmail(username);
 		
 		List<JwtUserDetails> inMemoryUserList = new ArrayList<>();
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		inMemoryUserList.add(new JwtUserDetails(Long.valueOf(walkerList.getJobSeekerId()),walkerList.getEmail(),encoder.encode(walkerList.getPassword()),"ROLE_USER_2"));
+		inMemoryUserList.add(new JwtUserDetails(Long.valueOf(walkerList.getJobSeekerId()),walkerList.getEmail(),encoder.encode(walkerList.getPassword()),"walker"));
 		Optional<JwtUserDetails> findFirst = inMemoryUserList.stream().filter(user -> user.getUsername().equals(username)).findFirst();
 		
 		if (!findFirst.isPresent()) {
