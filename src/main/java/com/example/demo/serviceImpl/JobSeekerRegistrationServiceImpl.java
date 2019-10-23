@@ -12,6 +12,8 @@ import com.example.demo.model.ExperienceModel;
 import com.example.demo.model.IndustriesModel;
 import com.example.demo.model.JobSeekerRegistrationModel;
 import com.example.demo.model.JobTypeModel;
+import com.example.demo.model.LocationWithLatLongModel;
+import com.example.demo.model.LocationsFormsModel;
 import com.example.demo.model.NoticePeriodListModel;
 import com.example.demo.model.PostJobsModel;
 import com.example.demo.model.QualificationListModel;
@@ -101,7 +103,7 @@ public class JobSeekerRegistrationServiceImpl implements JobSeekerRegistrationSe
 //		List<JobSeekerRegistrationModel> res=new ArrayList();
 //		List<JobSeekerRegistrationModel> result=jobSeekerRegistrationRepository.findByKeySkills(skills);
 		
-		return jobSeekerRegistrationRepository.findByKeySkills(skills);
+		return jobSeekerRegistrationRepository.findByKeySkillsContains(skills);
 	}
 
 
@@ -163,14 +165,41 @@ public class JobSeekerRegistrationServiceImpl implements JobSeekerRegistrationSe
 
 
 
-	@Override
-	public List<JobSeekerRegistrationModel> getwalkerByExperience(String experience) {
 	
-		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByExperience(experience);
-		System.out.println("Response is"+res);
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByLocation(LocationsFormsModel city) {
+	
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByLocation(city);
 		return res;
-//		return jobSeekerRegistrationRepository.findByExperience(experience);
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByPrefLocation(String preferredLocation) {
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationRepository.findByPreferredLocationContains(preferredLocation);
+		return res;
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getBetweenExp(float minExp,float maxExp) {
 		
+		return jobSeekerRegistrationRepository.findBetweenExp(minExp,maxExp);
+	}
+
+
+
+	@Override
+	public List<JobSeekerRegistrationModel> getwalkerByAll(String keySkills, LocationsFormsModel city,
+			String preferredLocation, QualificationListModel qualification,
+			IndustriesModel industryId, RoleModel roleId, NoticePeriodListModel noticePeriodId) {
+		
+		return jobSeekerRegistrationRepository.findBySearch(keySkills,city,preferredLocation,qualification,industryId,roleId,noticePeriodId);
 	}
 
 

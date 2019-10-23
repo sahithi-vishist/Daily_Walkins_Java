@@ -16,12 +16,12 @@ public class LocationsFormsServiceImpl implements LocationsFormsService{
 	LocationsFormsRepository locationsFormsRepository;
 	
 	@Override
-	public LocationsFormsModel saveLl(LocationsFormsModel locationsFormsModel) {
+	public LocationsFormsModel saveLocation(LocationsFormsModel locationsFormsModel) {
 		return locationsFormsRepository.save(locationsFormsModel);
 	}
 
 	@Override
-	public List<LocationsFormsModel> getLl() {
+	public List<LocationsFormsModel> getLocation() {
 		return locationsFormsRepository.findAll();
 	}
 	

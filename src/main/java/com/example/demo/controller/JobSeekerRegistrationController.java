@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -117,16 +118,27 @@ public class JobSeekerRegistrationController {
 	}
    @PostMapping("/getWalkersByKeySkills")
    public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerBySkills(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
-		
-		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getByKeySkills(jobSeekerRegistrationModel.getKeySkills());
+	   List<JobSeekerRegistrationModel> res=new ArrayList();
+	   String result=jobSeekerRegistrationModel.getKeySkills();
+	   String[] set=result.split("\\,");
+	   for(String skills:set) {
+		   res.addAll(jobSeekerRegistrationService.getByKeySkills(skills));
+	   }
+		//List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getByKeySkills(jobSeekerRegistrationModel.getKeySkills());
 		return ResponseEntity.ok().body(res);
 }
-//   @PostMapping("/getWalkersByLocation")
-//   public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerByLocation(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
-//		
-//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByLocation(jobSeekerRegistrationModel.getLocation());
-//		return ResponseEntity.ok().body(res);
-//}
+   @PostMapping("/searchWalkerByLocation")
+   public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerByLocation(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByLocation(jobSeekerRegistrationModel.getLocation());
+		return ResponseEntity.ok().body(res);
+}
+   @PostMapping("/searchWalkerByPreferedLocation")
+   public ResponseEntity<List<JobSeekerRegistrationModel>> getWalkerByPrefLocation(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByPrefLocation(jobSeekerRegistrationModel.getPreferredLocation());
+		return ResponseEntity.ok().body(res);
+}
    
 	@PostMapping("/searchWalkerByIndustry")
 	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByIndustry(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
@@ -141,13 +153,15 @@ public class JobSeekerRegistrationController {
 //		List<PostJobsModel> res=jobSeekerRegistrationService.getwalkerByminExp(jobSeekerRegistrationModel.getExperience());
 //		return ResponseEntity.ok().body(res);
 //		}
-	@PostMapping("/searchByWalkerExperience")
-	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByExperience(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
-//		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByExperience(jobSeekerRegistrationModel.getExperience());
-//		return ResponseEntity.ok().body(res);
-		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByExperience( jobSeekerRegistrationModel.getExperience());
-		return ResponseEntity.ok().body(res);
-		}
+@GetMapping("/getbyexperience")
+	
+  	public ResponseEntity<List<JobSeekerRegistrationModel>> getbetween(@RequestParam(name="minExp")float minExp,@RequestParam(name="maxExp")float maxExp){
+  		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getBetweenExp(minExp,maxExp);
+
+  		return ResponseEntity.ok().body(res);
+  		
+  	}
+   
 	
 	@PostMapping("/searchWalkerRole")
 	public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByRole(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
@@ -167,5 +181,17 @@ public ResponseEntity<List<JobSeekerRegistrationModel>> getwalkerByQualification
 	
 	List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByEducation(jobSeekerRegistrationModel.getEducation());
 	return ResponseEntity.ok().body(res);
+	}
+@PostMapping("/searchByAll")
+
+	public ResponseEntity<List<JobSeekerRegistrationModel>> getByAll(@RequestBody JobSeekerRegistrationModel jobSeekerRegistrationModel){
+		List<JobSeekerRegistrationModel> res=jobSeekerRegistrationService.getwalkerByAll(jobSeekerRegistrationModel.getKeySkills(),
+				jobSeekerRegistrationModel.getLocation(),jobSeekerRegistrationModel.getPreferredLocation(),
+				jobSeekerRegistrationModel.getEducation(),
+				jobSeekerRegistrationModel.getIndustryId(),jobSeekerRegistrationModel.getRoleId(),
+				jobSeekerRegistrationModel.getNoticePeriod());
+
+		return ResponseEntity.ok().body(res);
+		
 	}
 }

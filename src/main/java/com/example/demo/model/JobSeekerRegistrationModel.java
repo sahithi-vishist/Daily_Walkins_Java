@@ -47,7 +47,7 @@ public class JobSeekerRegistrationModel {
 	private String industry;
 	
 	@Column(name= "experience")
-	private String experience;
+	private float experience;
 	
 	@Column(name= "currentctc")
 	private float currentCTC;
@@ -67,7 +67,7 @@ public class JobSeekerRegistrationModel {
 	
 	@OneToOne
 	@JoinColumn(name= "location")
-	private LocationWithLatLongModel location;
+	private LocationsFormsModel location;
 	
 	@Column(name= "locality")
 	private String locality;
@@ -234,5 +234,5 @@ public class JobSeekerRegistrationModel {
 	@Column(name= "resumefile")
 	private String resumeFile;
 
-	
+
 }

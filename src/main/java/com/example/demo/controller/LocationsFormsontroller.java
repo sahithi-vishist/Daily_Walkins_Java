@@ -19,16 +19,16 @@ public class LocationsFormsontroller {
 	@Autowired
 	LocationsFormsService locationsFormsService;
 	
-	@PostMapping("/locations")
-	public LocationsFormsModel saveI(@RequestBody LocationsFormsModel locationsFormsModel) {
-		return locationsFormsService.saveLl(locationsFormsModel);
+	@PostMapping("/saveLocations")
+	public LocationsFormsModel saveLoc(@RequestBody LocationsFormsModel locationsFormsModel) {
+		return locationsFormsService.saveLocation(locationsFormsModel);
 	
 	}
 	
-	@GetMapping("/locations1")
-	public List<LocationsFormsModel> getI() {
+	@GetMapping("/getAllLocations")
+	public List<LocationsFormsModel> getLocation() {
 		
-		return locationsFormsService.getLl();
+		return locationsFormsService.getLocation();
 }
 
 }

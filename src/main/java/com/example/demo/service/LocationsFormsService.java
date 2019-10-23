@@ -7,8 +7,8 @@ import com.example.demo.model.LocationsFormsModel;
 
 public interface LocationsFormsService {
 
-LocationsFormsModel saveLl(LocationsFormsModel locationsFormsModel);
+LocationsFormsModel saveLocation(LocationsFormsModel locationsFormsModel);
 	
-	List<LocationsFormsModel> getLl();
+	List<LocationsFormsModel> getLocation();
 
 }

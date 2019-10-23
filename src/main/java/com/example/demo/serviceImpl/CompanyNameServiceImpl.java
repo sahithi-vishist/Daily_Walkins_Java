@@ -41,6 +41,11 @@ public class CompanyNameServiceImpl implements CompanyNameService
 	public List<CompanyNameModel> findAllDistributors() {
 		return companyNameRepository.findAll();
 	}
-	
+
+	@Override
+	public List<CompanyNameModel> getAllCompanies() {
+		
+		return companyNameRepository.findAll();
+	}
 	
 }

@@ -113,10 +113,10 @@ public class PostJobsController {
 		return ResponseEntity.ok().body(res);
 		}
 
-@PostMapping("/searchByQualification")
-public ResponseEntity<List<PostJobsModel>> getJobsByQualification(@RequestBody PostJobsModel postJobsModel){
-	
-	List<PostJobsModel> res=postJobsService.getJobsByEducation(postJobsModel.getQualification());
-	return ResponseEntity.ok().body(res);
-	}
+//@PostMapping("/searchByQualification")
+//public ResponseEntity<List<PostJobsModel>> getJobsByQualification(@RequestBody PostJobsModel postJobsModel){
+//	
+//	List<PostJobsModel> res=postJobsService.getJobsByEducation(postJobsModel.getQualification());
+//	return ResponseEntity.ok().body(res);
+//	}
 }
