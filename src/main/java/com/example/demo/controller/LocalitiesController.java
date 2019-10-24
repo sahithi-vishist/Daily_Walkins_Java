@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.CitiesModel;
 import com.example.demo.model.LocalitiesModel;
+import com.example.demo.model.LocationsFormsModel;
 import com.example.demo.service.LocalitiesService;
 
 @RestController
@@ -32,7 +33,8 @@ public class LocalitiesController {
 		return localitiesService.getL();
 }
 	@PostMapping("/getLocalities")
-	public List<LocalitiesModel> getByCityName(@RequestBody CitiesModel citiesModel){
-		return localitiesService.getLocalityByCity(citiesModel.getCityName());
+	public List<LocalitiesModel> getByCityName(@RequestBody LocationsFormsModel locationsFormsModel){
+		return localitiesService.getLocalityByCity(locationsFormsModel.getCity());
 	}
+	
 }

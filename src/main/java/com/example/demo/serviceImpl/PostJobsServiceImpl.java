@@ -67,7 +67,7 @@ public class PostJobsServiceImpl implements PostJobsService{
 
 
 	@Override
-	public List<PostJobsModel> getJobsByEducation(QualificationListModel education) {
+	public List<PostJobsModel> getJobsByEducation(String education) {
 		List<PostJobsModel> res=postJobsRepository.findByQualification(education);
 		System.out.println(res);
 		return res;
@@ -108,7 +108,7 @@ public class PostJobsServiceImpl implements PostJobsService{
 		return res;
 	}
 	@Override
-	public List<PostJobsModel> getJobsBySearch(String keySkills, String location, QualificationListModel education,
+	public List<PostJobsModel> getJobsBySearch(String keySkills, String location, String education,
 			ExperienceModel expMin, ExperienceModel expMax, IndustriesModel industryId, RoleModel roleId,
 			JobTypeModel jobTypeId) {
 		

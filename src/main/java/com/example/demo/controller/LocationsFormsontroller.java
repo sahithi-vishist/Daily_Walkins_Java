@@ -31,4 +31,9 @@ public class LocationsFormsontroller {
 		return locationsFormsService.getLocation();
 }
 
+	@GetMapping("/getcities")
+	public List<LocationsFormsModel> getAllCitiesn() {
+		
+		return locationsFormsService.getLocation();
+}
 }

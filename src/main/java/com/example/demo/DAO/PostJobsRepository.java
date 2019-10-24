@@ -27,11 +27,11 @@ public interface PostJobsRepository extends JpaRepository<PostJobsModel, Integer
 	public List<PostJobsModel> findByIndustryId(IndustriesModel industryId);
 	public List<PostJobsModel> findByRoleId(RoleModel roleId);
 	public List<PostJobsModel> findByJobTypeId(JobTypeModel jobTypeId);
-	public List<PostJobsModel> findByQualification(QualificationListModel qualification);
+	public List<PostJobsModel> findByQualification(String qualification);
 	
 	@Query("select j from post_jobs j where j.keySkills=:keySkills and j.location=:location and j.qualification=:education and j.expMin=:expMin and j.expMax=:expMax and j.industryId=:industryId and j.roleId=:roleId and j.jobTypeId=:jobTypeId")
 	public List<PostJobsModel> findBySearch(@Param ("keySkills")String keySkills ,@Param("location")String location,
-			@Param("education")QualificationListModel qualification,@Param("expMin")ExperienceModel expMin,@Param("expMax")ExperienceModel expMax,
+			@Param("education")String qualification,@Param("expMin")ExperienceModel expMin,@Param("expMax")ExperienceModel expMax,
 			@Param("industryId")IndustriesModel industryId,@Param("roleId")RoleModel roleId,@Param("jobTypeId")JobTypeModel jobTypeId);
 	
 }

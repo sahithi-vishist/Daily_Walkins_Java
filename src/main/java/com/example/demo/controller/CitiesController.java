@@ -32,7 +32,7 @@ public CitiesModel Test(@RequestBody CitiesModel citiesModel)
 	System.out.println(citiesModel.toString());
 	return citiesService.insertRec(citiesModel);
 }
-@GetMapping("/getcities")
+@GetMapping("/getallcities")
 public List<CitiesModel> getAllCities(){
 	return citiesService.getAllCities();
 	
