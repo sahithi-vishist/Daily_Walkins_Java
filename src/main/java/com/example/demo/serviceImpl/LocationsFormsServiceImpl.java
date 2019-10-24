@@ -16,15 +16,26 @@ public class LocationsFormsServiceImpl implements LocationsFormsService{
 	LocationsFormsRepository locationsFormsRepository;
 	
 	@Override
-	public LocationsFormsModel saveLl(LocationsFormsModel locationsFormsModel) {
+	
+	public LocationsFormsModel saveLocation(LocationsFormsModel locationsFormsModel) {
 		return locationsFormsRepository.save(locationsFormsModel);
 	}
 
 	@Override
-	public List<LocationsFormsModel> getLl() {
+	public List<LocationsFormsModel> getLocation() {
 		return locationsFormsRepository.findAll();
 	}
-	
 
-	
+	@Override
+	public LocationsFormsModel saveLl(LocationsFormsModel locationsFormsModel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<LocationsFormsModel> getLl() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+		
 }

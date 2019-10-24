@@ -20,12 +20,12 @@ public interface PostJobsService
 	public List<PostJobsModel> getByKeySkills(String skills);
 	public List<PostJobsModel> getJobNo(String email);
 	public List<PostJobsModel> getJobsByLocation(String location);
-	public List<PostJobsModel> getJobsByEducation(QualificationListModel education);
+	public List<PostJobsModel> getJobsByEducation(String education);
 	public List<PostJobsModel> getJobsByminExp(ExperienceModel minExp);
 	public List<PostJobsModel> getJobsBymaxExp(ExperienceModel maxExp);
 	public List<PostJobsModel> getJobsByIndustry(IndustriesModel industry);
 	public List<PostJobsModel> getJobsByRole(RoleModel role);
 	public List<PostJobsModel> getJobsByJobType(JobTypeModel jobType);
-//	public List<PostJobsModel> getJobsBySearch(String keySkills,String location,QualificationListModel education,ExperienceModel expMin,
-//			ExperienceModel expMax,IndustriesModel industryId,RoleModel roleId,JobTypeModel jobTypeId);
+	public List<PostJobsModel> getJobsBySearch(String keySkills,String location,String education,ExperienceModel expMin,
+			ExperienceModel expMax,IndustriesModel industryId,RoleModel roleId,JobTypeModel jobTypeId);
 }

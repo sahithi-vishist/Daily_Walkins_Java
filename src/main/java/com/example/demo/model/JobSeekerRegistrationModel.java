@@ -67,7 +67,7 @@ public class JobSeekerRegistrationModel {
 	
 	@OneToOne
 	@JoinColumn(name= "location")
-	private CitiesModel location;
+	private LocationsFormsModel location;
 	
 	@Column(name= "locality")
 	private String locality;
@@ -235,4 +235,5 @@ public class JobSeekerRegistrationModel {
 	private String resumeFile;
 
 	
+
 }

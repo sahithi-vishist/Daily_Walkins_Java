@@ -66,9 +66,9 @@ public class PostJobsModel {
 	@Column(name="location")
 	private String location ;
 	
-	@OneToOne
-	@JoinColumn(name="qualification")
-	private QualificationListModel qualification ;
+	
+	@Column(name="qualification")
+	private String qualification ;
 	
 	@Column(name="email")
 	private String email ;
@@ -196,9 +196,9 @@ public class PostJobsModel {
 	@Column(name="postedby")
 	private String postedBy ;
 	
-	@OneToOne
-	@JoinColumn(name="walkintimeslots")
-	private TimeSlotsModel walkinTimeSlots ;
+
+	@Column(name="walkintimeslots")
+	private String walkinTimeSlots ;
 	
 	@Column(name="venuedetails")
 	private String venueDetails;

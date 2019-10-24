@@ -10,5 +10,8 @@ public interface LocationsFormsService {
 LocationsFormsModel saveLl(LocationsFormsModel locationsFormsModel);
 	
 	List<LocationsFormsModel> getLl();
+LocationsFormsModel saveLocation(LocationsFormsModel locationsFormsModel);
+	
+	List<LocationsFormsModel> getLocation();
 
 }

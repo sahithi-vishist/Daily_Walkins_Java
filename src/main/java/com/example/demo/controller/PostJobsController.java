@@ -52,8 +52,12 @@ public class PostJobsController {
 	public PostJobsModel getJob(@RequestParam(name="jobNo") Integer jobNo) {
 		return postJobsService.getJobById(jobNo);
 	}
-	@PutMapping("/updatewalkin")
-	public ResponseEntity<PostJobsModel> updateWalkin(@RequestBody PostJobsModel postJobsModel) {
+@PutMapping("/updatewalkin")
+	public ResponseEntity<PostJobsModel> updateWalkin(@RequestParam("postWalkinDetails") String postWalkinDetails,
+			@RequestParam("companyLogo") MultipartFile companyLogo) throws IOException {
+		PostJobsModel postJobsModel =new PostJobsModel();
+		postJobsModel = new ObjectMapper().readValue(postWalkinDetails,PostJobsModel.class);
+		postJobsModel.setCompanyLogo(companyLogo.getBytes());
 		postJobsModel=postJobsService.updateWalkin(postJobsModel);
 		return ResponseEntity.ok().body(postJobsModel);
 	}
@@ -70,8 +74,7 @@ public class PostJobsController {
 			
 			res.addAll(postJobsService.getByKeySkills(skill));
 		}
-	
-	return ResponseEntity.ok().body(res);
+		return ResponseEntity.ok().body(res);
 	}
 	
 	@PostMapping("/EmailCheck")
@@ -125,12 +128,12 @@ public ResponseEntity<List<PostJobsModel>> getJobsByQualification(@RequestBody P
 	return ResponseEntity.ok().body(res);
 	}
 	
-//	@PostMapping("/advancesearch")
-//	public List<PostJobsModel> getJobsBySearch(@RequestBody PostJobsModel postJobsModel){
-//		return postJobsService.getJobsBySearch(postJobsModel.getKeySkills(), postJobsModel.getLocation(),
-//				postJobsModel.getQualification(),postJobsModel.getExpMin(),postJobsModel.getExpMax(),
-//				postJobsModel.getIndustryId(),postJobsModel.getRoleId(),postJobsModel.getJobTypeId());
-//		
-//	
-//	}
+	@PostMapping("/advancesearch")
+	public List<PostJobsModel> getJobsBySearch(@RequestBody PostJobsModel postJobsModel){
+		return postJobsService.getJobsBySearch(postJobsModel.getKeySkills(), postJobsModel.getLocation(),
+				postJobsModel.getQualification(),postJobsModel.getExpMin(),postJobsModel.getExpMax(),
+				postJobsModel.getIndustryId(),postJobsModel.getRoleId(),postJobsModel.getJobTypeId());
+		
+	
+	}
 }

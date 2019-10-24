@@ -27,6 +27,7 @@ public class CompanyNameController {
 		System.out.println(companyNameModel.toString());
 		return companyNameService.insertRec(companyNameModel);
 	}
+	
 	@GetMapping("/getcompanies")
 	public List<CompanyNameModel> getCompanies(){
 		return this.companyNameService.getAllCompanies();

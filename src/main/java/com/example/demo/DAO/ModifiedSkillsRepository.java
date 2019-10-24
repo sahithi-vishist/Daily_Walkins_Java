@@ -8,3 +8,4 @@ import com.example.demo.model.ModifiedSkillsModel;
 public interface ModifiedSkillsRepository extends JpaRepository<ModifiedSkillsModel, Integer> {
 
 }
+

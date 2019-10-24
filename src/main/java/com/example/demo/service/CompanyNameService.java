@@ -10,4 +10,8 @@ CompanyNameModel insertRec(CompanyNameModel rec);
 CompanyNameModel update(CompanyNameModel rec);
 
 public List<CompanyNameModel> getAllCompanies();
+
+
+//public List<CompanyNameModel> getAllCompanies();
+
 }

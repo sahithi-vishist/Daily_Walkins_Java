@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -78,9 +79,9 @@ public class CreateDriveModel {
 	@JoinColumn(name="noticeperiod")
 	private NoticePeriodListModel noticePeriod ;
 	
-	@OneToOne
-	@JoinColumn(name="timeslot")
-	private TimeSlotsModel timeslot;
+	
+	@Column(name="timeslot")
+	private String timeslot;
 	
 	@OneToOne
 	@JoinColumn(name="jobtype")
@@ -120,16 +121,17 @@ public class CreateDriveModel {
 	private String contactPerson;
 	
 	@Column(name="contactno")
-	private int contactNo;
+	private String contactNo;
 	
 	@Column(name="contactnolandline")
-	private int contactNoLandline;
+	private String contactNoLandline;
 	
 	@Column(name="companyaddress")
 	private String companyAddress;
 	
+	@Lob
 	@Column(name="companylogo")
-	private String companyLogo;
+	private byte[] companyLogo;
 	
 	@Column(name="walkinlocation")
 	private String walkinLocation;

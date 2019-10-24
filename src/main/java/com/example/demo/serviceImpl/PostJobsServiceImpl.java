@@ -107,18 +107,11 @@ public class PostJobsServiceImpl implements PostJobsService{
 		List<PostJobsModel> res=postJobsRepository.findByJobTypeId(jobType);
 		return res;
 	}
-
-
-//	@Override
-//	public List<PostJobsModel> getJobsBySearch(String keySkills, String location, QualificationListModel education,
-//			ExperienceModel expMin, ExperienceModel expMax, IndustriesModel industryId, RoleModel roleId,
-//			JobTypeModel jobTypeId) {
-//		
-//		return postJobsRepository.findBySearch(keySkills, location, education, expMin, expMax, industryId, roleId, jobTypeId);
-//	}
-
-
-	
-
-	
+	@Override
+	public List<PostJobsModel> getJobsBySearch(String keySkills, String location, QualificationListModel education,
+			ExperienceModel expMin, ExperienceModel expMax, IndustriesModel industryId, RoleModel roleId,
+			JobTypeModel jobTypeId) {
+		
+		return postJobsRepository.findBySearch(keySkills, location, education, expMin, expMax, industryId, roleId, jobTypeId);
+	}	
 }

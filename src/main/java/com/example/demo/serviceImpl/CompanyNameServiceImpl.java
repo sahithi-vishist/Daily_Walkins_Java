@@ -47,6 +47,5 @@ public class CompanyNameServiceImpl implements CompanyNameService
 		
 		return companyNameRepository.findAll();
 	}
-	
-	
+		
 }

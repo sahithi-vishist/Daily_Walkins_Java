@@ -48,7 +48,11 @@ public class JwtAuthenticationRestController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtTokenRequest authenticationRequest)
 			throws AuthenticationException {
 	
+
 		if(authenticationRequest.getRole()=="walker") {
+
+		//if(authenticationRequest.getType()=="walker") 
+
 			
 		authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
@@ -60,6 +64,7 @@ public class JwtAuthenticationRestController {
 		
 		
 		return ResponseEntity.ok(new JwtTokenResponse(token));
+
 		}
 			else {
 				System.out.println("called recruiter");
